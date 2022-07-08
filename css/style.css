@@ -3,11 +3,9 @@
     --fontParrafo: 'Open Sans', sans-serif;
     
     --primary: #0078ff;
-    --verde: #42b72a;
-    --rojo: #C03425;
-    --gris: #bbbdbf;
-    --blanco: #fff;
-    --negro: #000;
+    --gray: #bbbdbf;
+    --white: #fff;
+    --black: #000;
 }
 html{
     box-sizing: border-box;
@@ -21,8 +19,8 @@ body{
     font-size: 1.6rem;
     line-height: 2;
 }
-/*Globales*/
-.contenedor{
+/*global*/
+.container{
     width: 100%;
     margin: 0 auto;
 }
@@ -43,4 +41,79 @@ h3{
 }
 h4{
     font-size: 2.8rem;
+}
+/*utilities*/
+.no-margin{
+    margin: 0;
+}
+.no-padding{
+    padding: 0;
+}
+.center-text{
+    text-align: center;
+}
+/*Header*/
+.header{
+    height: 60rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.header__text{
+    text-align: center;
+    color: var(--black);
+    margin-top: 5rem;
+}
+@media (min-width: 768px){
+    .header__texto{
+        margin-top: 15rem;
+    }
+}
+.bar{
+    padding: 0rem 10rem;
+    background-color: var(--black);
+}
+@media (min-width: 768px) {
+    .bar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--black);
+    }
+}
+.logo{
+    color: var(--white);
+}
+.logo__name{
+    font-weight: 400;
+}
+.logo__bold{
+    font-weight: 700;
+}
+@media (max-width: 1080px) {
+    .logo__name{
+        font-size: 4rem;
+    }
+}
+@media (max-width: 1000px) {
+    .logo__name{
+        font-size: 3rem;
+    }
+}
+@media (max-width: 880px) {
+    .logo__name{
+        font-size: 2.5rem;
+    }
+}
+@media (min-width: 768px) {
+    .navigation{
+        display: flex;
+        gap: 3rem;
+    }
+}
+.navigation__link{
+    display: block;
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--white);
 }
