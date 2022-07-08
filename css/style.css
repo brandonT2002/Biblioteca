@@ -1,0 +1,46 @@
+:root{
+    --fontHeading: 'PT Sans', sans-serif;
+    --fontParrafo: 'Open Sans', sans-serif;
+    
+    --primary: #0078ff;
+    --verde: #42b72a;
+    --rojo: #C03425;
+    --gris: #bbbdbf;
+    --blanco: #fff;
+    --negro: #000;
+}
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*,*::before{
+    box-sizing: inherit;
+}
+body{
+    font-family: var(--fontParrafo);
+    font-size: 1.6rem;
+    line-height: 2;
+}
+/*Globales*/
+.contenedor{
+    width: 100%;
+    margin: 0 auto;
+}
+a{
+    text-decoration: none;
+}
+h1,h2,h3,h4{
+    font-family: var(--fontHeading);
+}
+h1{
+    font-size: 4.8rem;
+}
+h2{
+    font-size: 4rem;
+}
+h3{
+    font-size: 3.2rem;
+}
+h4{
+    font-size: 2.8rem;
+}
