@@ -6,7 +6,7 @@
     --secondary: #15172b;
     --gray: #bbbdbf;
     --white: #fff;
-    --dark: #0e0e18;
+    --dark: #101120;
 }
 html{
     box-sizing: border-box;
@@ -80,7 +80,9 @@ h4{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: var(--dark);
+        position: fixed;
+        backdrop-filter: blur(1rem);
+        background-color: rgba(17, 18, 34, 0.75);
         width: 100%;
     }
 }
@@ -108,7 +110,8 @@ h4{
 .newBook{
     display: flex;
     justify-content: flex-start;
-    padding: 2rem;
+    padding-top: 12rem;
+    padding-left: 2rem;
 }
 .button-modal{
     width: 100%;
@@ -126,13 +129,11 @@ h4{
     text-align: center;
     width: 100%;
 }
-
 @media (min-width: 768px) {
     .button-modal{
         width: 25rem;
     }
 }
-
 /*----------------------*/
 /*Efecto*/
 .modalmask {
@@ -142,8 +143,8 @@ h4{
     right: 0;
     bottom: 0;
     left: 0;
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(1rem);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 99999;
     opacity:0;
     -webkit-transition: opacity 400ms ease-in;
@@ -155,15 +156,14 @@ h4{
     opacity:1;
     pointer-events: auto;
 }
-
 /*Formato de la ventana*/
 .modalbox{
-    width: 75%;
     position: relative;
+    width: 75%; 
     padding: 2rem;
     background: var(--secondary);
     color: var(--white);
-    border-radius:3px;
+    border-radius:.6rem;
     -webkit-transition: all 500ms ease-in;
     -moz-transition: all 500ms ease-in;
     transition: all 500ms ease-in;
@@ -173,11 +173,21 @@ h4{
     margin: 0 auto;
 }
 .modalmask:target .movedown{       
-    margin:10% auto;
+    margin: 10% auto;
+}
+@media (max-height: 552px) {
+    .modalbox{
+        position: relative;
+        max-height: calc(100vh - 10rem);
+        overflow-y: auto;
+    }
+    .modalmask:target .movedown{
+        position: relative;
+        margin: 5% auto;
+    }
 }
 /*Boton de cerrar*/
 .close {
-    background: #606061;
     color: #FFFFFF;
     line-height: 25px;
     position: absolute;
@@ -187,8 +197,12 @@ h4{
     width: 24px;
     text-decoration: none;
     font-weight: bold;
-    border-radius:3px;
+    border-radius:50%;
  
+}
+.close:hover{
+    backdrop-filter: blur(25rem);
+    background-color: rgba(255, 255, 255, .2);
 }
 /*formulario*/
 .container-fields{
@@ -197,14 +211,7 @@ h4{
     column-gap: 1rem;
     row-gap: 3rem;
 }
-@media (min-width: 950px) {
-    .container-fields{
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        column-gap: 1rem;
-        row-gap: 3rem;
-    }   
-}
+
 .input-container {
     height: 5rem;
     position: relative;
@@ -212,7 +219,7 @@ h4{
 } 
 .input {
     background-color: #303245;
-    border-radius: 12px;
+    border-radius: .6rem;
     border: 0;
     box-sizing: border-box;
     color: var(--white);
@@ -222,7 +229,6 @@ h4{
     padding: 4px 20px 0;
     width: 100%;
 }
-  
 .cut {
     background-color: var(--secondary);
     border-radius: 10px;
@@ -234,16 +240,14 @@ h4{
     transition: transform 200ms;
     width: 76px;
 }
-  
 .cut-short {
     width: 50px;
-}
-  
+    display: inline-block;
+} 
 .input:focus ~ .cut,
 .input:not(:placeholder-shown) ~ .cut {
     transform: translateY(8px);
 }
-  
 .placeholder {
     color: #65657b;
     font-family: sans-serif;
@@ -255,23 +259,19 @@ h4{
     transition: transform 200ms, color 200ms;
     top: 20px;
 }
-  
 .input:focus ~ .placeholder,
 .input:not(:placeholder-shown) ~ .placeholder {
     transform: translateY(-30px) translateX(10px) scale(0.75);
 }
-  
 .input:not(:placeholder-shown) ~ .placeholder {
     color: #34da1f;
 }
-  
 .input:focus ~ .placeholder {
     color: #dc2f55;
 }
-  
 .submit {
     background-color: var(--primary);
-    border-radius: 12px;
+    border-radius: .6rem;
     border: 0;
     box-sizing: border-box;
     color: #eee;
@@ -283,7 +283,7 @@ h4{
     text-align: center;
     width: 100%;
 }
-  
 .submit:active {
     background-color: #06b;
 }
+/*------------*/
