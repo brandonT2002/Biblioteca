@@ -6,7 +6,7 @@
     --secondary: #15172b;
     --gray: #bbbdbf;
     --white: #fff;
-    --dark: #101120;
+    --dark: #111222bf;
 }
 html{
     box-sizing: border-box;
@@ -82,7 +82,7 @@ h4{
         align-items: center;
         position: fixed;
         backdrop-filter: blur(1rem);
-        background-color: rgba(17, 18, 34, 0.75);
+        background-color: #111222bf;
         width: 100%;
     }
 }
@@ -109,9 +109,15 @@ h4{
 }
 .newBook{
     display: flex;
+    width: 90%;
     justify-content: flex-start;
-    padding-top: 12rem;
+    padding-top: 11.6rem;
     padding-left: 2rem;
+}
+@media (max-width: 768px) {
+    .newBook{
+        padding: 2rem;
+    }
 }
 .button-modal{
     width: 100%;
@@ -135,7 +141,7 @@ h4{
     }
 }
 /*----------------------*/
-/*Efecto*/
+/*Effect*/
 .modalmask {
     position: fixed;
     font-family: var(--fontParrafo);
