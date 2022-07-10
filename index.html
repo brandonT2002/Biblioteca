@@ -25,7 +25,9 @@
         </div>
     </header>
     <div class="container newBook">
-        <a href="#modal1" class="button-modal"><button class="button">Nuevo Libro</button></a>
+        <a href="#modal1" class="button-modal">
+            <button class="button">Nuevo Libro</button>
+        </a>
         <div id="modal1" class="modalmask">
             <form action="" autocomplete="off">
                 <div class="modalbox movedown">
@@ -33,7 +35,7 @@
                     <h2 class="center-text">Crear Libro</h2>
                     <div class="container-fields">
                         <div class="input-container ic2">
-                            <input id="isbn" class="input" type="text" placeholder=" " />
+                            <input id="isbn" class="input" type="number" min="0" max="999" placeholder=" " />
                             <div class="cut cut-short"></div>
                             <label for="isbn" class="placeholder">ISBN</label>
                         </div>
@@ -48,24 +50,50 @@
                             <label for="title" class="placeholder">Titulo</>
                         </div>
                         <div class="input-container ic2">
-                            <input id="year" class="input" type="text" placeholder=" " />
+                            <input id="year" class="input" type="number" min="0" max="9999" placeholder=" " />
                             <div class="cut cut-short"></div>
                             <label for="year" class="placeholder">Año</label>
                         </div>
                         <div class="input-container ic2">
-                            <input id="noCopies" class="input" type="text" placeholder=" " />
+                            <input id="noCopies" class="input" type="number" min="1" max="9999" placeholder=" " />
                             <div class="cut cut-short"></div>
                             <label for="noCopies" class="placeholder">Copias</>
                         </div>
                         <div class="input-container ic2">
-                            <input id="noAvailableCopies" class="input" type="text" placeholder=" " />
+                            <input id="noAvailableCopies" class="input" type="number" min="1" max="9999" placeholder=" " />
                             <div class="cut cut-short"></div>
                             <label for="noAvailableCopies" class="placeholder">Copias Disp</>
                         </div>
                     </div>
-                    <button type="button" class="submit">Crear Libro</button>
+                    <button type="submit" class="submit">Crear Libro</button>
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="container searchBooks">
+        <h2 class="center-text">Buscar Libro</h2>
+        <div class="containerSearch">
+            <div class="input-container ic2">
+                <input id="title" class="input" type="text" placeholder=" " />
+                <div class="cut cut-short"></div>
+                <label for="title" class="placeholder">Titulo</label>
+            </div>
+            <div class="input-container ic2">
+                <input id="author" class="input" type="text" placeholder=" " />
+                <div class="cut cut-short"></div>
+                <label for="author" class="placeholder">Autor</>
+            </div>
+            <div class="input-container ic2">
+                <input id="initialYear" class="input" type="number" min="0" max="9999" placeholder=" " />
+                <div class="cut cut-short"></div>
+                <label for="initialYear" class="placeholder">Año Inicial</>
+            </div>
+            <div class="input-container ic2">
+                <input id="finalYear" class="input" type="number" min="0" max="9999" placeholder=" " />
+                <div class="cut cut-short"></div>
+                <label for="finalYear" class="placeholder">Año Final</label>
+            </div>
+            <button type="button" class="button search">Buscar</button>
         </div>
     </div>
 </body>
