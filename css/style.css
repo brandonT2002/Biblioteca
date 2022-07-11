@@ -87,6 +87,7 @@ h4{
         position: fixed;
         backdrop-filter: blur(1rem);
         background-color: #111222bf;
+        z-index: 2;
         width: 100%;
     }
 }
@@ -320,7 +321,6 @@ h4{
         display: grid;
         grid-template-columns: repeat(5,1fr);
         column-gap: 1rem;
-        row-gap: 2rem;
     }
     .search{
         grid-column-start: 5;
@@ -328,3 +328,35 @@ h4{
         grid-row-start: 1;
     }
 }
+/*table*/
+.container-table{
+    width: 90%;
+    color: var(--white);
+    padding: 2rem;
+    padding-bottom: 9rem;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){background-color: rgba(17, 18, 34)}
+  
+  th {
+    background-color: var(--secondary);
+    color: var(--white);
+  }
+  tr:hover{
+    background-color: #303245;
+  }
+  .icon{
+    width: 3rem;
+    height: 3rem;
+    stroke: var(--white);
+    cursor: pointer;
+  }
