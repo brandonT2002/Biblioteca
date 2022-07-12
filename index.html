@@ -35,7 +35,7 @@
                     <h2 class="center-text">Crear Libro</h2>
                     <div class="container-fields">
                         <div class="input-container ic2">
-                            <input id="isbn" class="input" type="number" min="0" max="999" placeholder=" " />
+                            <input id="isbn" class="input" type="number" min="0" placeholder=" " />
                             <div class="cut cut-short"></div>
                             <label for="isbn" class="placeholder">ISBN</label>
                         </div>
@@ -65,7 +65,7 @@
                             <label for="noAvailableCopies" class="placeholder">Copias Disp</>
                         </div>
                     </div>
-                    <button type="submit" class="submit">Crear Libro</button>
+                    <button type="button" class="submit" onclick="createBook()">Crear Libro</button>
                 </div>
             </form>
         </div>
@@ -95,107 +95,11 @@
             </div>
             <button type="button" class="button search">Buscar</button>
         </div>
-    </div>
+    </div>json
     <div class="container container-table">
-        <table>
-            <tr>
-              <th>ISBN</th>
-              <th>Autor</th>
-              <th>Titulo</th>
-              <th>Año</th>
-              <th>Copias</th>
-              <th>Copias Disponibles</th>
-              <th></th>
-            </tr>
-            <tr>
-              <td>123</td>
-              <td>Isaac Asimov</td>
-              <td>Los propios dioses</td>
-              <td>1972</td>
-              <td>5</td>
-              <td>5</td>
-              <td title="editar">
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-              </td>
-            </tr>
-            <tr>
-              <td>456</td>
-              <td>Isaac Asimov</td>
-              <td>El fin de la Eternidad</td>
-              <td>1972</td>
-              <td>5</td>
-              <td>5</td>
-              <td title="editar">
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-              </td>
-            </tr>
-            <tr>
-              <td>789</td>
-              <td>Lisa Randall</td>
-              <td>Materia oscura y dinosaurios</td>
-              <td>2016</td>
-              <td>5</td>
-              <td>5</td>
-              <td title="editar">
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-              </td>
-            </tr>
-            <tr>
-              <td>789</td>
-              <td>Kip Thorne</td>
-              <td>Agujeros negros y tiempo curvo</td>
-              <td>2002</td>
-              <td>5</td>
-              <td>5</td>
-              <td title="editar">
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-              </td>
-            </tr>
-            <tr title="editar">
-                <td>123</td>
-                <td>Isaac Asimov</td>
-                <td>Los propios dioses</td>
-                <td>1972</td>
-                <td>5</td>
-                <td>5</td>
-                <td>
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                  </td>
-              </tr>
-              <tr>
-                <td>456</td>
-                <td>Isaac Asimov</td>
-                <td>El fin de la Eternidad</td>
-                <td>1972</td>
-                <td>5</td>
-                <td>5</td>
-                <td title="editar">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                  </td>
-              </tr>
-              <tr>
-                <td>789</td>
-                <td>Lisa Randall</td>
-                <td>Materia oscura y dinosaurios</td>
-                <td>2016</td>
-                <td>5</td>
-                <td>5</td>
-                <td title="editar">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                  </td>
-              </tr>
-              <tr>
-                <td>789</td>
-                <td>Kip Thorne</td>
-                <td>Agujeros negros y tiempo curvo</td>
-                <td>2002</td>
-                <td>5</td>
-                <td>5</td>
-                <td title="editar">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                  </td>
-              </tr>
-          </table>
+        <table id="booksInfo"></table>
     </div>
+    <script src="js/script.js"></script>
+    <script>getBooksInfo()</script>
 </body>
 </html>
