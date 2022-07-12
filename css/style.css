@@ -100,6 +100,16 @@ h4{
 .logo__bold{
     font-weight: 600;
 }
+@media (max-width: 410px) {
+    .logo__name{
+        font-weight: 400;
+        font-size: 3rem;
+    }
+    .logo__bold{
+        font-weight: 600;
+        font-size: 3rem;
+    }
+}
 @media (min-width: 768px) {
     .navigation{
         display: flex;
@@ -336,27 +346,32 @@ h4{
     padding-bottom: 9rem;
 }
 table {
+    border-radius: .6rem;
     border-collapse: collapse;
     width: 100%;
-  }
+}
   
-  th, td {
+th, td {
     text-align: left;
     padding: 8px;
-  }
+}
   
-  tr:nth-child(even){background-color: rgba(17, 18, 34)}
-  
-  th {
+tr:nth-child(even){
     background-color: var(--secondary);
+    padding: 4rem;
+}
+  
+th {
+    background-color: rgba(17, 18, 34);
     color: var(--white);
-  }
-  tr:hover{
+    border-bottom-color: rgb(71, 75, 77);
+}
+tr:hover{
     background-color: #303245;
-  }
-  .icon{
-    width: 3rem;
-    height: 3rem;
+}
+.icon{
+    width: 2.5rem;
+    height: 2.5rem;
     stroke: var(--white);
     cursor: pointer;
-  }
+}

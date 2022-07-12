@@ -79,7 +79,9 @@ function getBooksInfo(){
             </td>
           </tr>`
         }
-        document.getElementById('booksInfo').innerHTML = info
+        if(resultado.length != 0){
+            document.getElementById('booksInfo').innerHTML = info
+        }
     })
     .catch(error => {console.error(error)})
 }
