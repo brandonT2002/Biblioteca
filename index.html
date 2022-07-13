@@ -13,7 +13,7 @@
     <header class="header">
         <div class="container">
             <div class="bar">
-                <a href="#" class="logo">
+                <a class="logo">
                     <h1 class="logo__name no-margin center-text">Library<span class="logo__bold">API</h1>
                 </a>
                 <nav class="navigation">
@@ -99,7 +99,7 @@
     <div id="modal2" class="modalmask">
         <div class="alert success">
             <span class="closebtn">&times;</span>  
-            <strong>Success!</strong> Debe reemplazar la información en el campo correspondiente
+            <strong><svg class="icon-alert" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></strong> Debe reemplazar la información en el campo correspondiente
         </div>
         <form action="" autocomplete="off">
             <div class="modalbox movedown">
@@ -122,9 +122,7 @@
                         <label for="year" class="placeholder">Año</label>
                     </div>
                 </div>
-                <div id="buttonChange">
-                    <button type="button" class="submit" onclick="">Aceptar</button>
-                </div>
+                <div id="buttonChange"></div>
             </div>
         </form>
     </div>
@@ -145,6 +143,9 @@
             function(event){
                 //alert(event.keyCode)
                 if(event.keyCode == 116){
+                    window.location.href = 'index.html#close'
+                }
+                else if(event.keyCode == 27){
                     window.location.href = 'index.html#close'
                 }
             },

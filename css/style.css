@@ -219,6 +219,7 @@ h4{
     width: 24px;
     text-decoration: none;
     font-weight: bold;
+    font-size: 2.5rem;
     border-radius:50%;
  
 }
@@ -398,9 +399,17 @@ tr:hover{
     color: white;
     font-weight: bold;
     float: right;
-    font-size: 22px;
+    font-size: 2.5rem;
     line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
     width: 24px;
+    margin-top: 1rem;
+}
+.icon-alert{
+    position: relative;
+    top: .6rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    stroke: var(--white);
 }

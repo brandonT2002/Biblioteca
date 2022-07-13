@@ -1,4 +1,4 @@
-let api = 'http://127.0.0.1:4000/'
+let api = 'http://127.0.0.1:4000'
 //let api = ''
 let headers = new Headers()
 headers.append('Content-Type','application/json');
@@ -76,28 +76,24 @@ function getBooksInfo(){
             <td>${resultado[i].no_available_copies}</td>
             <td title="editar">
             <a href="#modal2" class="button-modal">
-              <svg onclick="changeInfoBook(${resultado[i].isbn},'${resultado[i].author}','${resultado[i].title}',${resultado[i].year})" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+              <svg onclick="changeInfoBook(${resultado[i].isbn})" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
             </a>
             </td>
           </tr>`
         }
         if(resultado.length != 0){
             document.getElementById('booksInfo').innerHTML = info
+        }else{
+            document.getElementById('noBooks').style.display = "none"
         }
     })
     .catch(error => {console.error(error)})
 }
 
-function changeInfoBook(isbn,author,title,year) {
+function changeInfoBook(isbn) {
     closeAlert()
     document.getElementById('titleLook').innerHTML = 'ISBN: ' + isbn
-    let authorBook = document.getElementById('authorEdit')
-    authorBook.value = author
-    let titleBook = document.getElementById('titleEdit')
-    titleBook.value = title
-    let yearBook = document.getElementById('yearEdit')
-    yearBook.value = year
-    //document.getElementById('buttonChange').innerHTML `<button type="button" class="submit" onclick="">Aceptar</button>`
+    document.getElementById('buttonChange').innerHTML = `<button type="button" class="submit" onclick="updateBook(${parseInt(isbn)})">Actualizar</button>`
 }
 
 function closeAlert(){
@@ -113,4 +109,45 @@ function closeAlert(){
             }, 600);
         }
     }
+}
+
+function updateBook(isbn){
+    let author = document.getElementById('authorEdit').value
+    let title = document.getElementById('titleEdit').value
+    let year = document.getElementById('yearEdit').value
+    if(author.replace(' ','')=='' || title.replace(' ','')=='' || year.replace(' ','')=='') {
+        alert('Todos los campos son obligatorios')
+        return
+    }
+
+    fetch(`${api}/book`, {
+        method: 'PUT',
+        headers,
+        body: `{
+            "isbn": ${isbn},
+            "author": "${author}",
+            "title": "${title}",
+            "year": ${year}
+        }`
+    })
+    .then(respuesta => respuesta.json())
+    .then(resultado => {
+        if(resultado.msg == 'Libro actualizado'){
+            alert(resultado.msg)
+            resetModalEdit()
+            getBooksInfo()
+        }
+    })
+    .catch(error => {
+        alert('Ha ocurrido un error, no se pudo actualizar el libro')
+        console.error(error)
+        resetModalEdit()
+    })
+}
+
+function resetModalEdit(){
+    window.location.href = 'index.html#close'
+    document.getElementById('authorEdit').value=''
+    document.getElementById('titleEdit').value=''
+    document.getElementById('yearEdit').value=''
 }
