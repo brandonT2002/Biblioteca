@@ -76,11 +76,10 @@ function getBooksInfo(){
             <td>${resultado[i].no_available_copies}</td>
             <td title="editar">
             <a href="#modal2" class="button-modal">
-              <svg onclick="changeInfoBook(#modal2)" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+              <svg onclick="changeInfoBook(${resultado[i].isbn},'${resultado[i].author}','${resultado[i].title}',${resultado[i].year})" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
             </a>
             </td>
           </tr>`
-
         }
         if(resultado.length != 0){
             document.getElementById('booksInfo').innerHTML = info
@@ -89,7 +88,29 @@ function getBooksInfo(){
     .catch(error => {console.error(error)})
 }
 
-function changeInfoBook(isbn,author,title,year,noCopies,noAvailableCopies) {
-    document.getElementById('isb').value = isbn
-    
+function changeInfoBook(isbn,author,title,year) {
+    closeAlert()
+    document.getElementById('titleLook').innerHTML = 'ISBN: ' + isbn
+    let authorBook = document.getElementById('authorEdit')
+    authorBook.value = author
+    let titleBook = document.getElementById('titleEdit')
+    titleBook.value = title
+    let yearBook = document.getElementById('yearEdit')
+    yearBook.value = year
+    //document.getElementById('buttonChange').innerHTML `<button type="button" class="submit" onclick="">Aceptar</button>`
+}
+
+function closeAlert(){
+    var close = document.getElementsByClassName('closebtn');
+    var i;
+
+    for(i = 0; i < close.length; i++){
+        close[i].onclick = function(){
+            var div = this.parentElement;
+            div.style.opacity= "0";
+            setTimeout(function(){
+                div.style.display = "none;"
+            }, 600);
+        }
+    }
 }

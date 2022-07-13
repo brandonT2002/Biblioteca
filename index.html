@@ -31,7 +31,7 @@
         <div id="modal1" class="modalmask">
             <form action="" autocomplete="off">
                 <div class="modalbox movedown">
-                    <a href="#close" title="Close" class="close">X</a>
+                    <a href="#close" title="Close" class="close">&times;</a>
                     <h2 class="center-text">Crear Libro</h2>
                     <div class="container-fields">
                         <div class="input-container ic2">
@@ -96,32 +96,38 @@
             <button type="button" class="button search">Buscar</button>
         </div>
     </div>
-        <div id="modal2" class="modalmask">    
-            <form action="" autocomplete="off">
-                <div class="modalbox movedown">
-                    <a href="#close" title="Close" class="close">X</a>
-                    <h2 class="center-text">Modificar changeInfoBook()</h2>
-                    <div class="container-fields-edit">
-                        <div class="input-container ic2">
-                            <input id="authorEdit" class="input" type="text" placeholder=" " />
-                            <div class="cut cut-short"></div>
-                            <label for="author" class="placeholder">Autor</>
-                        </div>
-                        <div class="input-container ic2">
-                            <input id="titleEdit" class="input" type="text" placeholder=" " />
-                            <div class="cut cut-short"></div>
-                            <label for="title" class="placeholder">Titulo</>
-                        </div>
-                        <div class="input-container ic2">
-                            <input id="yearEdit" class="input" type="number" min="0" max="9999" placeholder=" " />
-                            <div class="cut cut-short"></div>
-                            <label for="year" class="placeholder">Año</label>
-                        </div>
-                    </div>
-                    <button type="button" class="submit" onclick="createBook()">Aceptar</button>
-                </div>
-            </form>
+    <div id="modal2" class="modalmask">
+        <div class="alert success">
+            <span class="closebtn">&times;</span>  
+            <strong>Success!</strong> Indicates a successful or positive action.
         </div>
+        <form action="" autocomplete="off">
+            <div class="modalbox movedown">
+                <a href="#close" title="Close" class="close">&times;</a>
+                <h2 id="titleLook" class="center-text"></h2>
+                <div class="container-fields-edit">
+                    <div class="input-container ic2">
+                        <input id="authorEdit" class="input" type="text" placeholder=" " />
+                        <div class="cut cut-short"></div>
+                        <label for="author" class="placeholder">Autor</>
+                    </div>
+                    <div class="input-container ic2">
+                        <input id="titleEdit" class="input" type="text" placeholder=" " />
+                        <div class="cut cut-short"></div>
+                        <label for="title" class="placeholder">Titulo</>
+                    </div>
+                    <div class="input-container ic2">
+                        <input id="yearEdit" class="input" type="number" min="0" max="9999" placeholder=" " />
+                        <div class="cut cut-short"></div>
+                        <label for="year" class="placeholder">Año</label>
+                    </div>
+                </div>
+                <div id="buttonChange">
+                    <button type="button" class="submit" onclick="">Aceptar</button>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="container container-table">
         <table id="booksInfo">
             <tr>
@@ -133,5 +139,17 @@
     </div>
     <script src="js/script.js"></script>
     <script>getBooksInfo()</script>
+    <script>
+        window.addEventListener(
+            'keydown',
+            function(event){
+                //alert(event.keyCode)
+                if(event.keyCode == 116){
+                    window.location.href = 'index.html#close'
+                }
+            },
+            false
+        )
+    </script>
 </body>
 </html>

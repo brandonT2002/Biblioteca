@@ -166,7 +166,7 @@ h4{
     left: 0;
     backdrop-filter: blur(1rem);
     background: rgba(0, 0, 0, 0.5);
-    z-index: 99999;
+    z-index: 3;
     opacity:0;
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
@@ -381,4 +381,25 @@ tr:hover{
     grid-template-columns: repeat(3,1fr);
     column-gap: 1rem;
     row-gap: 3rem;
+}
+/*alert*/
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+}
+.alert.success {background-color: #04AA6D;}
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 24px;
 }
