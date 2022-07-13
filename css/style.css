@@ -5,6 +5,7 @@
     --primary: #0078ff;
     --secondary: #15172b;
     --gray: #bbbdbf;
+    --verde: #04AA6D;
     --white: #fff;
     --dark: #111222bf;
 }
@@ -285,7 +286,7 @@ h4{
     transform: translateY(-30px) translateX(10px) scale(0.75);
 }
 .input:not(:placeholder-shown) ~ .placeholder {
-    color: #34da1f;
+    color: var(--verde);
 }
 .input:focus ~ .placeholder {
     color: #dc2f55;
@@ -391,7 +392,7 @@ tr:hover{
     transition: opacity 0.6s;
     margin-bottom: 15px;
 }
-.alert.success {background-color: #04AA6D;}
+.alert.success {background-color: var(--verde);}
 .closebtn {
     margin-left: 15px;
     color: white;
