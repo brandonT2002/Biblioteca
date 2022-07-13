@@ -26,74 +26,33 @@
     </header>
     <div class="container newBook">
         <a href="#modal1" class="button-modal">
-            <button class="button">Nuevo Libro</button>
+            <button class="button">Nuevo Cliente</button>
         </a>
         <div id="modal1" class="modalmask">
             <form action="" autocomplete="off">
                 <div class="modalbox movedown">
                     <a href="#close" title="Close" class="close">&times;</a>
-                    <h2 class="center-text">Crear Libro</h2>
-                    <div class="container-fields">
+                    <h2 class="center-text">Crear Prestamista</h2>
+                    <div class="container-fields__customer">
                         <div class="input-container ic2">
-                            <input id="isbn" class="input" type="number" min="0" placeholder=" " />
+                            <input id="cui" class="input" type="number" min="0" placeholder=" " />
                             <div class="cut cut-short"></div>
-                            <label for="isbn" class="placeholder">ISBN</label>
+                            <label for="cui" class="placeholder">CUI</label>
                         </div>
                         <div class="input-container ic2">
-                            <input id="author" class="input" type="text" placeholder=" " />
+                            <input id="firstName" class="input" type="text" placeholder=" " />
                             <div class="cut cut-short"></div>
-                            <label for="author" class="placeholder">Autor</>
+                            <label for="author" class="placeholder">Nombre</>
                         </div>
                         <div class="input-container ic2">
-                            <input id="title" class="input" type="text" placeholder=" " />
+                            <input id="lastName" class="input" type="text" placeholder=" " />
                             <div class="cut cut-short"></div>
-                            <label for="title" class="placeholder">Titulo</>
-                        </div>
-                        <div class="input-container ic2">
-                            <input id="year" class="input" type="number" min="0" max="9999" placeholder=" " />
-                            <div class="cut cut-short"></div>
-                            <label for="year" class="placeholder">Año</label>
-                        </div>
-                        <div class="input-container ic2">
-                            <input id="noCopies" class="input" type="number" min="1" max="9999" placeholder=" " />
-                            <div class="cut cut-short"></div>
-                            <label for="noCopies" class="placeholder">Copias</>
-                        </div>
-                        <div class="input-container ic2">
-                            <input id="noAvailableCopies" class="input" type="number" min="1" max="9999" placeholder=" " />
-                            <div class="cut cut-short"></div>
-                            <label for="noAvailableCopies" class="placeholder">Copias Disp</>
+                            <label for="lastName" class="placeholder">Apellido</>
                         </div>
                     </div>
                     <button type="button" class="submit" onclick="createBook()">Crear Libro</button>
                 </div>
             </form>
-        </div>
-    </div>
-    <div class="container searchBooks">
-        <h2 class="center-text">Buscar Libro</h2>
-        <div class="containerSearch">
-            <div class="input-container ic2">
-                <input id="title" class="input" type="text" placeholder=" " />
-                <div class="cut cut-short"></div>
-                <label for="title" class="placeholder">Titulo</label>
-            </div>
-            <div class="input-container ic2">
-                <input id="author" class="input" type="text" placeholder=" " />
-                <div class="cut cut-short"></div>
-                <label for="author" class="placeholder">Autor</>
-            </div>
-            <div class="input-container ic2">
-                <input id="initialYear" class="input" type="number" min="0" max="9999" placeholder=" " />
-                <div class="cut cut-short"></div>
-                <label for="initialYear" class="placeholder">Año Inicial</>
-            </div>
-            <div class="input-container ic2">
-                <input id="finalYear" class="input" type="number" min="0" max="9999" placeholder=" " />
-                <div class="cut cut-short"></div>
-                <label for="finalYear" class="placeholder">Año Final</label>
-            </div>
-            <button type="button" class="button search">Buscar</button>
         </div>
     </div>
     <div id="modal2" class="modalmask">
@@ -127,26 +86,27 @@
         </form>
     </div>
     <div class="container container-table">
+        <h2 class="center-text">Prestamistas</h2>
         <table id="booksInfo">
             <tr>
                 <th id="noBooks" class="center-text">
-                    No hay libros registrados
+                    No hay Prestamismas
                 </th>
             </tr>
         </table>
     </div>
     <script src="js/script.js"></script>
-    <script>getBooksInfo()</script>
+    <script>getCustomer()</script>
     <script>
         window.addEventListener(
             'keydown',
             function(event){
                 //alert(event.keyCode)
                 if(event.keyCode == 116){
-                    window.location.href = 'index.html#close'
+                    window.location.href = 'cliente.html#close'
                 }
                 else if(event.keyCode == 27){
-                    window.location.href = 'index.html#close'
+                    window.location.href = 'cliente.html#close'
                 }
             },
             false

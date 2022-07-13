@@ -413,3 +413,11 @@ tr:hover{
     height: 2.5rem;
     stroke: var(--white);
 }
+/*customer*/
+/*create customer*/
+.container-fields__customer{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    column-gap: 1rem;
+    row-gap: 3rem;
+}
