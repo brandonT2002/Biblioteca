@@ -151,3 +151,44 @@ function resetModalEdit(){
     document.getElementById('titleEdit').value=''
     document.getElementById('yearEdit').value=''
 }
+
+function createCustomer(){
+    let cui = document.getElementById('cui').value
+    let firstName = document.getElementById('firstName').value
+    let lastName = document.getElementById('lastName').value
+    if(cui.replace(' ','')=='' || firstName.replace(' ','')=='' || lastName.replace(' ','')=='') {
+        alert('Todos los campos son obligatorios')
+        return
+    }
+    fetch(`${api}/person`, {
+        method: 'POST',
+        headers,
+        body: `{
+            "cui": "${cui}",
+            "last_name": "${lastName}",
+            "first_name": "${firstName}"
+        }`
+    })
+    .then(respuesta => respuesta.json())
+    .then(resultado => {
+        if(resultado.msg == 'Prestamista creado exitosamente'){
+            alert(resultado.msg)
+            resetModalCustomer()
+        }
+        else{
+            alert(`${resultado.msg}, CUI duplicado`)
+            document.getElementById('cui').value=''
+        }
+    })
+    .catch(error => {
+        alert('Ha ocurrido un error, no se pudo crear el libro')
+        resetModalCustomer()
+    })
+}
+
+function resetModalCustomer(){
+    window.location.href = 'cliente.html#close'
+    document.getElementById('cui').value=''
+    document.getElementById('firstName').value=''
+    document.getElementById('lastName').value=''
+}
