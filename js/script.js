@@ -258,8 +258,7 @@ function newLoan(){
             resetBorrow()
         }
         else{
-            alert(`Prestamo exitoso, código de préstamo - ${resultado.msg}`)
-            console.log(resultado.msg)
+            alert(`Prestamo exitoso, código de préstamo - ${resultado.uuid}`)
             resetBorrow()
         }
     })
@@ -273,4 +272,69 @@ function resetBorrow(){
     window.location.href = 'cliente.html#close'
     document.getElementById('cuiBorrow').value=''
     document.getElementById('isbnBorrow').value=''
+}
+function returnBook(){
+    let uuid = document.getElementById('uuid').value
+    if(uuid.replace(' ','')=='') {
+        alert('Todos los campos son obligatorios')
+        return
+    }
+    fetch(`${api}/borrow/:uuid`, {
+        method: 'PATCH',
+        headers,
+        body: `{
+            "uuid": "${uuid}"
+        }`
+    })
+    .then(respuesta => respuesta.json())
+    .then(resultado => {
+        if(resultado.msg == 'Libro devuelto exitosamente'){
+            alert(`${resultado.msg}`)
+            document.getElementById('uuid').value=''
+        }
+        else{
+            alert(`${resultado.msg}`)
+            document.getElementById('uuid').value=''
+        }
+    })
+    .catch(error => {
+        alert('Ha ocurrido un error, no se pudo crear el libro')
+        resetModalCustomer()
+    })
+}
+/*loan*/
+function show() {
+    let action = document.getElementById('action');
+
+    if(action.value == 'loan'){
+        loan = `<h2 class="center-text">Prestar Libro</h2>
+        <div class="containerBorrow">
+            <div class="input-container ic2">
+                <input id="cuiBorrow" class="input" type="number" placeholder=" " />
+                <div class="cut cut-short"></div>
+                <label for="cuiBorrow" class="placeholder">CUI</label>
+            </div>
+            <div class="input-container ic2">
+                <input id="isbnBorrow" class="input" type="number" placeholder=" " />
+                <div class="cut cut-short"></div>
+                <label for="isbnBorrow" class="placeholder">ISBN</>
+            </div>
+            <button type="button" class="button" onclick="newLoan()">Prestar</button>
+        </div>`
+        document.getElementById('prestar').style.display=''
+        document.getElementById('prestar').innerHTML = loan
+    }
+    else{
+        returnB = `<h2 class="center-text">Devolver Libro</h2>
+        <div class="containerReturn">
+            <div class="input-container ic2">
+                <input id="uuid" class="input" maxlength="5" type="text" placeholder=" " />
+                <div class="cut cut-short"></div>
+                <label for="uuid" class="placeholder">UUID</label>
+            </div>
+            <button type="button" class="button" onclick="returnBook()">Devolver</button>
+        </div>`
+        document.getElementById('prestar').style.display=''
+        document.getElementById('prestar').innerHTML = returnB
+    }
 }

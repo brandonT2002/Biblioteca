@@ -25,6 +25,18 @@ body{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 /*global*/
 .container{
@@ -414,6 +426,11 @@ tr:hover{
     stroke: var(--white);
 }
 /*customer*/
+.containerLoan{
+    width: 90%;
+    padding: 2rem;
+    color: var(--white);
+}
 /*create customer*/
 .container-fields__customer{
     display: grid;
@@ -428,5 +445,28 @@ tr:hover{
 .containerBorrow{
     display: grid;
     grid-template-columns: repeat(3,1fr);
+    column-gap: 1rem;
+}
+.selectForm{
+    width: 100%;
+    border: .2rem solid #303245;
+    background-color: transparent;
+    color: var(--blanco);
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    outline: none;
+    padding: 1rem;
+}
+.item{
+    color: var(--secondary);
+}
+.containerForm{
+    width: 90%;
+    padding: 2rem;
+    color: var(--white);
+}
+.containerReturn{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
     column-gap: 1rem;
 }

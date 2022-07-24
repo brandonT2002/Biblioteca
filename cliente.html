@@ -18,14 +18,14 @@
                 </a>
                 <nav class="navigation">
                     <a href="index.html" class="navigation__link">Libro</a>
-                    <a href="cliente.html" class="navigation__link">Prestamista</a>
+                    <a href="cliente.html" class="navigation__link">Prestamo</a>
                 </nav>
             </div>
         </div>
     </header>
     <div class="container newBook">
         <a href="#modal1" class="button-modal">
-            <button class="button">Nuevo Cliente</button>
+            <button class="button">Nuevo Prestamista</button>
         </a>
         <div id="modal1" class="modalmask">
             <form action="" autocomplete="off">
@@ -54,22 +54,16 @@
             </form>
         </div>
     </div>
-    <div class="container searchBooks">
-        <h2 class="center-text">Prestar Libro</h2>
-        <div class="containerBorrow">
-            <div class="input-container ic2">
-                <input id="cuiBorrow" class="input" type="number" placeholder=" " />
-                <div class="cut cut-short"></div>
-                <label for="cuiBorrow" class="placeholder">CUI</label>
-            </div>
-            <div class="input-container ic2">
-                <input id="isbnBorrow" class="input" type="number" placeholder=" " />
-                <div class="cut cut-short"></div>
-                <label for="isbnBorrow" class="placeholder">ISBN</>
-            </div>
-            <button type="button" class="button" onclick="newLoan()">Prestar</button>
-        </div>
+    <div class="container containerForm">
+        <form action="" method="">
+            <select id="action" class="selectForm" name="status" onChange="show()">
+                <option disabled="" selected="" cl="">Seleccionar Acción</option>
+                <option class="item" value="loan">Prestar Libro</option>
+                <option class="item" value="return">Devolver Libro</option>
+             </select>
+        </form>
     </div>
+    <div id="prestar" class="container searchBooks" style="display: none"></div>
     <div id="modal2" class="modalmask">
         <form action="" autocomplete="off">
             <div class="modalbox movedown">
