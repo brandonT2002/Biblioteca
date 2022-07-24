@@ -83,8 +83,6 @@ function getBooksInfo(){
         }
         if(resultado.length != 0){
             document.getElementById('booksInfo').innerHTML = info
-        }else{
-            document.getElementById('noBooks').style.display = "none"
         }
     })
     .catch(error => {console.error(error)})
@@ -201,24 +199,78 @@ function getCustomerInfo(){
     })
     .then(respuesta => respuesta.json())
     .then(resultado => {
-        let info = '<tr><th>CUI</th><th>Nombre</th><th>Apellido</th><th>Registro</th></tr>'
+        let info = '<tr><th>CUI</th><th>Nombre</th><th>Apellido</th><th></th></tr>'
         for(let i = 0; i < resultado.length; i ++) {
             info += `<tr>
             <td>${resultado[i].cui}</td>
             <td>${resultado[i].first_name}</td>
             <td>${resultado[i].last_name}</td>
-            <td title="editar">
-            <a href="#modal2" class="button-modal">
-              <svg onclick="changeInfoBook()" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-            </a>
+            <td title="historial">
+            <a href="#modal2" class="button-modal record" onclick="recordCustomer('${resultado[i].first_name}','${resultado[i].last_name}')">Historial</a>
             </td>
           </tr>`
+          console.log(resultado[i].record)
         }
         if(resultado.length != 0){
             document.getElementById('customerInfo').innerHTML = info
-        }else{
-            document.getElementById('noCustomer').style.display = "none"
         }
     })
     .catch(error => {console.error(error)})
+}
+
+function recordCustomer(name,lastName) {
+    document.getElementById('titleLook').innerHTML = name + " " + lastName
+    //console.log(record)
+        /*let info = '<tr><th>UUID</th><th>ISBN</th><th>Titulo</th><th>Fecha de Prestamo</th><th>Fecha de Devolución</th></tr>'
+        for(let i = 0; i < record.length; i ++) {
+            info += `<td>${record[i]}</td>`
+        }
+        if(resultado.length != 0){
+            document.getElementById('customerRecord').innerHTML = info
+        }else{
+            document.getElementById('noRecord').style.display = "none"
+        }*/
+}
+
+function newLoan(){
+    let cui = document.getElementById('cuiBorrow').value
+    let isbn = document.getElementById('isbnBorrow').value
+    if(cui.replace(' ','')=='' || isbn.replace(' ','')=='') {
+        alert('Todos los campos son obligatorios')
+        return
+    }
+    fetch(`${api}/borrow`, {
+        method: 'POST',
+        headers,
+        body: `{
+            "cui": "${cui}",
+            "isbn": ${isbn}
+        }`
+    })
+    .then(respuesta => respuesta.json())
+    .then(resultado => {
+        if(resultado.msg == 'Prestamo pendiente'){
+            alert(`${resultado.msg}`)
+            resetBorrow()
+        }
+        else if(resultado.msg == 'No se ha podido realizar el prestamo'){
+            alert(`${resultado.msg}, verifique las credenciales`)
+            resetBorrow()
+        }
+        else{
+            alert(`Prestamo exitoso, código de préstamo - ${resultado.msg}`)
+            console.log(resultado.msg)
+            resetBorrow()
+        }
+    })
+    .catch(error => {
+        alert('Ha ocurrido un error, no se pudo crear el libro')
+        resetModalCustomer()
+    })
+}
+
+function resetBorrow(){
+    window.location.href = 'cliente.html#close'
+    document.getElementById('cuiBorrow').value=''
+    document.getElementById('isbnBorrow').value=''
 }

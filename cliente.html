@@ -18,8 +18,7 @@
                 </a>
                 <nav class="navigation">
                     <a href="index.html" class="navigation__link">Libro</a>
-                    <a href="cliente.html" class="navigation__link">Cliente</a>
-                    <a href="#" class="navigation__link">Prestamo</a>
+                    <a href="cliente.html" class="navigation__link">Prestamista</a>
                 </nav>
             </div>
         </div>
@@ -55,32 +54,34 @@
             </form>
         </div>
     </div>
-    <div id="modal2" class="modalmask">
-        <div class="alert success">
-            <span class="closebtn">&times;</span>  
-            <strong><svg class="icon-alert" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></strong> Debe reemplazar la información en el campo correspondiente
+    <div class="container searchBooks">
+        <h2 class="center-text">Prestar Libro</h2>
+        <div class="containerBorrow">
+            <div class="input-container ic2">
+                <input id="cuiBorrow" class="input" type="number" placeholder=" " />
+                <div class="cut cut-short"></div>
+                <label for="cuiBorrow" class="placeholder">CUI</label>
+            </div>
+            <div class="input-container ic2">
+                <input id="isbnBorrow" class="input" type="number" placeholder=" " />
+                <div class="cut cut-short"></div>
+                <label for="isbnBorrow" class="placeholder">ISBN</>
+            </div>
+            <button type="button" class="button" onclick="newLoan()">Prestar</button>
         </div>
+    </div>
+    <div id="modal2" class="modalmask">
         <form action="" autocomplete="off">
             <div class="modalbox movedown">
                 <a href="#close" title="Close" class="close">&times;</a>
                 <h2 id="titleLook" class="center-text"></h2>
-                <div class="container-fields-edit">
-                    <div class="input-container ic2">
-                        <input id="authorEdit" class="input" type="text" placeholder=" " />
-                        <div class="cut cut-short"></div>
-                        <label for="author" class="placeholder">Autor</>
-                    </div>
-                    <div class="input-container ic2">
-                        <input id="titleEdit" class="input" type="text" placeholder=" " />
-                        <div class="cut cut-short"></div>
-                        <label for="title" class="placeholder">Titulo</>
-                    </div>
-                    <div class="input-container ic2">
-                        <input id="yearEdit" class="input" type="number" min="0" max="9999" placeholder=" " />
-                        <div class="cut cut-short"></div>
-                        <label for="year" class="placeholder">Año</label>
-                    </div>
-                </div>
+                <table id="customerRecord">
+                    <tr>
+                        <th id="noRecord" class="center-text">
+                            No hay ningun registro
+                        </th>
+                    </tr>
+                </table>
                 <div id="buttonChange"></div>
             </div>
         </form>
