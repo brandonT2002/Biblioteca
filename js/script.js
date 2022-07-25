@@ -307,7 +307,7 @@ function getCustomerInfo(){
     })
     .then(respuesta => respuesta.json())
     .then(resultado => {
-        let info = '<tr><th>CUI</th><th>Nombre</th><th>Apellido</th><th></th></tr>'
+        let info = '<tr><th>CUI</th><th>Nombre</th><th>Apellido</th><th></th><th></th></tr>'
         for(let i = 0; i < resultado.length; i ++) {
             info += `<tr>
             <td>${resultado[i].cui}</td>
@@ -316,6 +316,8 @@ function getCustomerInfo(){
             <td title="historial">
             <a href="#modal2" class="button-modal record" onclick="recordCustomer('${resultado[i].first_name}','${resultado[i].last_name}')">Historial</a>
             </td>
+            <td><a class="button-modal"><svg onclick="deleteAlertCustomer(${resultado[i].cui})" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+        </a></td>
           </tr>`
           console.log(resultado[i].record)
         }
@@ -338,6 +340,50 @@ function recordCustomer(name,lastName) {
         }else{
             document.getElementById('noRecord').style.display = "none"
         }*/
+}
+
+function deleteAlertCustomer(cui){
+    swal({
+        title: "¿Estás seguro?",
+        text: "Una vez eliminado, ¡no podrá recuperar este prestamista!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+    .then((willDelete) => {
+        if (willDelete) {
+            deleteCustomer(cui)
+            swal("¡El prestamista ha sido eliminado!", {
+                icon: "success",
+                buttons: false,
+                timer: 1500
+            });
+            getCustomerInfo()
+        }
+    });
+}
+
+function deleteCustomer(cui){
+    fetch(`${api}/person`, {
+        method: 'DELETE',
+        headers,
+        body: `{
+            "cui": "${cui}"
+        }`
+    })
+    .then(respuesta => respuesta.json())
+    .then(resultado => {
+        if(resultado.msg == 'Prestamista eliminado exitosamente'){
+            getCustomerInfo()
+        }
+    })
+    .catch(error => {
+        swal({
+            title: "¡Oops!",
+            text: "Ha ocurrido un error, no se pudo eliminar el prestamista",
+            icon: "error",
+        });
+    })
 }
 
 function newLoan(){
