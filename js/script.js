@@ -111,7 +111,7 @@ function getBooksInfo(){
             document.getElementById('booksInfo').innerHTML = info
         }
     })
-    .catch(error => {console.error(error)})
+    .catch(error => {/*console.error(error)*/})
 }
 
 function changeInfoBook(isbn) {
@@ -180,7 +180,7 @@ function updateBook(isbn){
             text: "Ha ocurrido un error, no se pudo actualizar el libro",
             icon: "error",
         });
-        console.error(error)
+        /*console.error(error)*/
         resetModalEdit()
     })
 }
@@ -201,7 +201,6 @@ function deleteAlert(isbn){
                 buttons: false,
                 timer: 1500
             });
-            getBooksInfo()
         }
     });
 }
@@ -325,7 +324,7 @@ function getCustomerInfo(){
             document.getElementById('customerInfo').innerHTML = info
         }
     })
-    .catch(error => {console.error(error)})
+    .catch(error => {/*console.error(error)*/})
 }
 
 function recordCustomer(name,lastName) {
@@ -426,6 +425,13 @@ function newLoan(){
             });
             resetBorrow()
         }
+        else if(resultado.msg == 'No hay libros disponibles'){
+            swal({
+                text: resultado.msg,
+                icon: "info"
+            });
+            resetBorrow()
+        }
         else{
             swal({
                 title: "¡Bien!",
@@ -502,8 +508,7 @@ function returnBook(){
 }
 /*loan*/
 function show() {
-    let action = document.getElementById('action');
-
+    let action = document.getElementById('action')
     if(action.value == 'loan'){
         loan = `<h2 class="center-text">Prestar Libro</h2>
         <div class="containerBorrow">

@@ -58,7 +58,7 @@
         <form action="" method="">
             <select id="action" class="selectForm" name="status" onChange="show()">
                 <option disabled="" selected="" cl="">Seleccionar Acción</option>
-                <option class="item" value="loan">Prestar Libro</option>
+                <option class="item" value="loan" selected="selected">Prestar Libro</option>
                 <option class="item" value="return">Devolver Libro</option>
              </select>
         </form>
@@ -85,7 +85,7 @@
         <table id="customerInfo">
             <tr>
                 <th id="noCustomer" class="center-text">
-                    No hay Prestamismas
+                    No hay prestamistas registrados
                 </th>
             </tr>
         </table>
@@ -93,6 +93,7 @@
     <script src="js/script.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>getCustomerInfo()</script>
+    <script>show()</script>
     <script>
         window.addEventListener(
             'keydown',
