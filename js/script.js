@@ -1,4 +1,5 @@
-let api = 'https://ipc1-proyecto2-202112030.herokuapp.com/'
+//let api = 'https://ipc1-proyecto2-202112030.herokuapp.com/'
+let api = 'http://127.0.0.1:4000/'
 //let api = ''
 let headers = new Headers()
 headers.append('Content-Type','application/json');
@@ -313,32 +314,42 @@ function getCustomerInfo(){
             <td>${resultado[i].first_name}</td>
             <td>${resultado[i].last_name}</td>
             <td title="historial">
-            <a href="#modal2" class="button-modal record" onclick="recordCustomer('${resultado[i].first_name}','${resultado[i].last_name}')">Historial</a>
+            <a href="#modal2" class="button-modal record" onclick="recordCustomer(${resultado[i].cui},'${resultado[i].first_name}','${resultado[i].last_name}')">Historial</a>
             </td>
             <td><a class="button-modal"><svg onclick="deleteAlertCustomer(${resultado[i].cui})" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-        </a></td>
-          </tr>`
-          console.log(resultado[i].record)
+            </a></td>
+            </tr>`
+          //console.log(resultado[i].record)
         }
-        if(resultado.length != 0){
+        if(resultado.length > 0){
             document.getElementById('customerInfo').innerHTML = info
         }
     })
     .catch(error => {/*console.error(error)*/})
 }
 
-function recordCustomer(name,lastName) {
+function recordCustomer(cui,name,lastName) {
     document.getElementById('titleLook').innerHTML = name + " " + lastName
-    //console.log(record)
-        /*let info = '<tr><th>UUID</th><th>ISBN</th><th>Titulo</th><th>Fecha de Prestamo</th><th>Fecha de Devolución</th></tr>'
-        for(let i = 0; i < record.length; i ++) {
-            info += `<td>${record[i]}</td>`
+    fetch(`${api}/record/${cui}`)
+    .then(respuesta => respuesta.json())
+    .then(resultado => {
+        let info = '<tr><th>UUID</th><th>ISBN</th><th>Titulo</th><th>Fecha de Préstamo</th><th>Fecha de Devolución</th></tr>'
+        for(let i = 0; i < resultado.record.length; i ++) {
+            info += `<tr>
+            <td>${resultado.record[i].uuid}</td>
+            <td>${resultado.record[i].isbn}</td>
+            <td>${resultado.record[i].title}</td>
+            <td>${resultado.record[i].lenDate}</td>
+            <td>${resultado.record[i].returnDate}</td>
+          </tr>`
         }
-        if(resultado.length != 0){
+        //console.log(resultado.record[0].uuid)
+        if(resultado.record.length > 0){
             document.getElementById('customerRecord').innerHTML = info
-        }else{
-            document.getElementById('noRecord').style.display = "none"
-        }*/
+        }else {
+            document.getElementById('customerRecord').innerHTML = `<tr><th id="noRecord" class="center-text">No hay ningun registro</th></tr>`
+        }
+    })
 }
 
 function deleteAlertCustomer(cui){
