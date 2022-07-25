@@ -43,7 +43,7 @@ function createBook(){
         }
     })
     .catch(error => {
-        alert('Ha ocurrido un error, no se pudo crear el libro')
+        swal("Oops!", "Ha ocurrido un error, no se pudo crear el libro!", "error");
         resetModal()
     })
 }
@@ -65,7 +65,7 @@ function getBooksInfo(){
     })
     .then(respuesta => respuesta.json())
     .then(resultado => {
-        let info = '<tr><th>ISBN</th><th>Autor</th><th>Titulo</th><th>Año</th><th>Copias</th><th>Copias Disponibles</th><th></th></tr>'
+        let info = '<tr><th>ISBN</th><th>Autor</th><th>Titulo</th><th>Año</th><th>Copias</th><th>Copias Disponibles</th><th></th><th></th></tr>'
         for(let i = 0; i < resultado.length; i ++) {
             info += `<tr>
             <td>${resultado[i].isbn}</td>
@@ -77,6 +77,11 @@ function getBooksInfo(){
             <td title="editar">
             <a href="#modal2" class="button-modal">
               <svg onclick="changeInfoBook(${resultado[i].isbn})" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            </a>
+            </td>
+            <td title="editar">
+            <a class="button-modal">
+                <svg onclick="deleteBook(${resultado[i].isbn})" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
             </a>
             </td>
           </tr>`
@@ -140,6 +145,26 @@ function updateBook(isbn){
         alert('Ha ocurrido un error, no se pudo actualizar el libro')
         console.error(error)
         resetModalEdit()
+    })
+}
+
+function deleteBook(isbn){
+    fetch(`${api}/book`, {
+        method: 'DELETE',
+        headers,
+        body: `{
+            "isbn": ${isbn}
+        }`
+    })
+    .then(respuesta => respuesta.json())
+    .then(resultado => {
+        if(resultado.msg == 'Libro eliminado exitosamente'){
+            alert(resultado.msg)
+            getBooksInfo()
+        }
+    })
+    .catch(error => {
+        alert('Ha ocurrido un error, no se pudo eliminar el libro')
     })
 }
 
