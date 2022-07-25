@@ -395,7 +395,7 @@ function newLoan(){
             text: "Ha ocurrido un error, no se pudo realizar el prestamo",
             icon: "error",
         });
-        resetModalCustomer()
+        resetBorrow()
     })
 }
 
@@ -446,8 +446,12 @@ function returnBook(){
         }
     })
     .catch(error => {
-        alert('Ha ocurrido un error, no se pudo devolver el libro')
-        resetModalCustomer()
+        swal({
+            title: "¡Oops!",
+            text: "Ha ocurrido un error, no se pudo devolver el libro",
+            icon: "error",
+        });
+        document.getElementById('uuid').value=''
     })
 }
 /*loan*/
