@@ -1,4 +1,4 @@
-let api = 'http://127.0.0.1:4000'
+let api = 'https://ipc1-proyecto2-202112030.herokuapp.com/'
 //let api = ''
 let headers = new Headers()
 headers.append('Content-Type','application/json');
