@@ -15,7 +15,13 @@ function createBook(){
     let noCopies = document.getElementById('noCopies').value
     let noAvailableCopies = document.getElementById('noAvailableCopies').value
     if(isbn.replace(' ','')=='' || author.replace(' ','')=='' || title.replace(' ','')=='' || year.replace(' ','')=='' || noCopies.replace(' ','')=='' || noAvailableCopies.replace(' ','')=='') {
-        alert('Todos los campos son obligatorios')
+        swal({
+            title: "¡Oops!",
+            text: "Todos los campos son obligatorios",
+            icon: "info",
+            buttons: false,
+            timer: 2000
+        });
         return
     }
     fetch(`${api}/book`, {
@@ -33,17 +39,32 @@ function createBook(){
     .then(respuesta => respuesta.json())
     .then(resultado => {
         if(resultado.msg == 'Libro creado exitosamente'){
-            alert(resultado.msg)
+            //alert(resultado.msg)
+            swal({
+                title: "¡Bien!",
+                text: resultado.msg,
+                icon: "success",
+                buttons: false,
+                timer: 2000
+            });
             resetModal()
             getBooksInfo()
         }
         else{
-            alert(`${resultado.msg}, ISBN duplicado`)
+            swal({
+                title: "¡Oops!",
+                text: resultado.msg + ", ISBN duplicado",
+                icon: "warning",
+            })
             document.getElementById('isbn').value=''
         }
     })
     .catch(error => {
-        swal("Oops!", "Ha ocurrido un error, no se pudo crear el libro!", "error");
+        swal({
+            title: "¡Oops!",
+            text: "Ha ocurrido un error, no se pudo crear el libro",
+            icon: "error",
+        });
         resetModal()
     })
 }
@@ -79,9 +100,9 @@ function getBooksInfo(){
               <svg onclick="changeInfoBook(${resultado[i].isbn})" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
             </a>
             </td>
-            <td title="editar">
+            <td title="eliminar">
             <a class="button-modal">
-                <svg onclick="deleteBook(${resultado[i].isbn})" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                <svg onclick="deleteAlert(${resultado[i].isbn})" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
             </a>
             </td>
           </tr>`
@@ -119,7 +140,13 @@ function updateBook(isbn){
     let title = document.getElementById('titleEdit').value
     let year = document.getElementById('yearEdit').value
     if(author.replace(' ','')=='' || title.replace(' ','')=='' || year.replace(' ','')=='') {
-        alert('Todos los campos son obligatorios')
+        swal({
+            title: "¡Oops!",
+            text: "Todos los campos son obligatorios",
+            icon: "info",
+            buttons: false,
+            timer: 2000
+        });
         return
     }
 
@@ -136,16 +163,47 @@ function updateBook(isbn){
     .then(respuesta => respuesta.json())
     .then(resultado => {
         if(resultado.msg == 'Libro actualizado'){
-            alert(resultado.msg)
+            swal({
+                title: "¡Bien!",
+                text: resultado.msg + " exitosamente",
+                icon: "success",
+                buttons: false,
+                timer: 2000
+            });
             resetModalEdit()
             getBooksInfo()
         }
     })
     .catch(error => {
-        alert('Ha ocurrido un error, no se pudo actualizar el libro')
+        swal({
+            title: "¡Oops!",
+            text: "Ha ocurrido un error, no se pudo actualizar el libro",
+            icon: "error",
+        });
         console.error(error)
         resetModalEdit()
     })
+}
+
+function deleteAlert(isbn){
+    swal({
+        title: "¿Estás seguro?",
+        text: "Una vez eliminado, ¡no podrá recuperar este libro!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+    .then((willDelete) => {
+        if (willDelete) {
+            deleteBook(isbn)
+            swal("¡El libro ha sido eliminado!", {
+                icon: "success",
+                buttons: false,
+                timer: 1500
+            });
+            getBooksInfo()
+        }
+    });
 }
 
 function deleteBook(isbn){
@@ -159,12 +217,15 @@ function deleteBook(isbn){
     .then(respuesta => respuesta.json())
     .then(resultado => {
         if(resultado.msg == 'Libro eliminado exitosamente'){
-            alert(resultado.msg)
             getBooksInfo()
         }
     })
     .catch(error => {
-        alert('Ha ocurrido un error, no se pudo eliminar el libro')
+        swal({
+            title: "¡Oops!",
+            text: "Ha ocurrido un error, no se pudo actualizar el libro",
+            icon: "error",
+        });
     })
 }
 
@@ -180,7 +241,13 @@ function createCustomer(){
     let firstName = document.getElementById('firstName').value
     let lastName = document.getElementById('lastName').value
     if(cui.replace(' ','')=='' || firstName.replace(' ','')=='' || lastName.replace(' ','')=='') {
-        alert('Todos los campos son obligatorios')
+        swal({
+            title: "¡Oops!",
+            text: "Todos los campos son obligatorios",
+            icon: "info",
+            buttons: false,
+            timer: 2000
+        });
         return
     }
     fetch(`${api}/person`, {
@@ -195,17 +262,33 @@ function createCustomer(){
     .then(respuesta => respuesta.json())
     .then(resultado => {
         if(resultado.msg == 'Prestamista creado exitosamente'){
-            alert(resultado.msg)
+            swal({
+                title: "¡Bien!",
+                text: resultado.msg,
+                icon: "success",
+                buttons: false,
+                timer: 2000
+            });
             resetModalCustomer()
             getCustomerInfo()
         }
         else{
-            alert(`${resultado.msg}, CUI duplicado`)
+            swal({
+                title: "¡Oops!",
+                text: resultado.msg + ", CUI duplicado",
+                icon: "warning",
+                buttons: false,
+                timer: 2000
+            });
             document.getElementById('cui').value=''
         }
     })
     .catch(error => {
-        alert('Ha ocurrido un error, no se pudo crear el libro')
+        swal({
+            title: "¡Oops!",
+            text: "Ha ocurrido un error, no se pudo crear al prestamista",
+            icon: "error",
+        });
         resetModalCustomer()
     })
 }
@@ -261,7 +344,13 @@ function newLoan(){
     let cui = document.getElementById('cuiBorrow').value
     let isbn = document.getElementById('isbnBorrow').value
     if(cui.replace(' ','')=='' || isbn.replace(' ','')=='') {
-        alert('Todos los campos son obligatorios')
+        swal({
+            title: "¡Oops!",
+            text: "Todos los campos son obligatorios",
+            icon: "info",
+            buttons: false,
+            timer: 2000
+        });
         return
     }
     fetch(`${api}/borrow`, {
@@ -275,20 +364,37 @@ function newLoan(){
     .then(respuesta => respuesta.json())
     .then(resultado => {
         if(resultado.msg == 'Prestamo pendiente'){
-            alert(`${resultado.msg}`)
+            swal({
+                title: "¡Oops!",
+                text: resultado.msg,
+                icon: "info",
+                buttons: false,
+                timer: 2000
+            });
             resetBorrow()
         }
         else if(resultado.msg == 'No se ha podido realizar el prestamo'){
-            alert(`${resultado.msg}, verifique las credenciales`)
+            swal({
+                text: resultado.msg + ", verifique los datos",
+                icon: "info"
+            });
             resetBorrow()
         }
         else{
-            alert(`Prestamo exitoso, código de préstamo - ${resultado.uuid}`)
+            swal({
+                title: "¡Bien!",
+                text: "Prestamo exitoso, código de préstamo - " + resultado.uuid,
+                icon: "success",
+            });
             resetBorrow()
         }
     })
     .catch(error => {
-        alert('Ha ocurrido un error, no se pudo crear el libro')
+        swal({
+            title: "¡Oops!",
+            text: "Ha ocurrido un error, no se pudo realizar el prestamo",
+            icon: "error",
+        });
         resetModalCustomer()
     })
 }
@@ -301,7 +407,13 @@ function resetBorrow(){
 function returnBook(){
     let uuid = document.getElementById('uuid').value
     if(uuid.replace(' ','')=='') {
-        alert('Todos los campos son obligatorios')
+        swal({
+            title: "¡Oops!",
+            text: "Todos los campos son obligatorios",
+            icon: "info",
+            buttons: false,
+            timer: 2000
+        });
         return
     }
     fetch(`${api}/borrow/:uuid`, {
@@ -314,16 +426,27 @@ function returnBook(){
     .then(respuesta => respuesta.json())
     .then(resultado => {
         if(resultado.msg == 'Libro devuelto exitosamente'){
-            alert(`${resultado.msg}`)
+            swal({
+                title: "¡Bien!",
+                text: resultado.msg,
+                icon: "success",
+                buttons: false,
+                timer: 2000
+            });
             document.getElementById('uuid').value=''
         }
         else{
-            alert(`${resultado.msg}`)
+            swal({
+                text: resultado.msg,
+                icon: "info",
+                buttons: false,
+                timer: 2000
+            });
             document.getElementById('uuid').value=''
         }
     })
     .catch(error => {
-        alert('Ha ocurrido un error, no se pudo crear el libro')
+        alert('Ha ocurrido un error, no se pudo devolver el libro')
         resetModalCustomer()
     })
 }
