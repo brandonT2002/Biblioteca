@@ -1,6 +1,5 @@
-let api = 'https://ipc1-proyecto2-202112030.herokuapp.com/'
-//let api = 'http://127.0.0.1:4000/'
-//let api = ''
+//let api = 'https://ipc1-proyecto2-202112030.herokuapp.com/'
+let api = 'http://127.0.0.1:4000/'
 let headers = new Headers()
 headers.append('Content-Type','application/json');
 headers.append('Accept','application/json');
@@ -178,7 +177,7 @@ function updateBook(isbn){
     .catch(error => {
         swal({
             title: "¡Oops!",
-            text: "Ha ocurrido un error, no se pudo actualizar el libro",
+            text: "Ha ocurrido un error, no se pudo eliminar el libro",
             icon: "error",
         });
         /*console.error(error)*/
