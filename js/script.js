@@ -1,5 +1,5 @@
-//let api = 'https://ipc1-proyecto2-202112030.herokuapp.com/'
-let api = 'http://127.0.0.1:4000/'
+let api = 'https://ipc1-proyecto2-202112030.herokuapp.com/'
+//let api = 'http://127.0.0.1:4000/'
 //let api = ''
 let headers = new Headers()
 headers.append('Content-Type','application/json');
@@ -316,7 +316,7 @@ function getCustomerInfo(){
             <td title="historial">
             <a href="#modal2" class="button-modal record" onclick="recordCustomer(${resultado[i].cui},'${resultado[i].first_name}','${resultado[i].last_name}')">Historial</a>
             </td>
-            <td><a class="button-modal"><svg onclick="deleteAlertCustomer(${resultado[i].cui})" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            <td title="eliminar"><a class="button-modal"><svg onclick="deleteAlertCustomer(${resultado[i].cui})" class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
             </a></td>
             </tr>`
           //console.log(resultado[i].record)
